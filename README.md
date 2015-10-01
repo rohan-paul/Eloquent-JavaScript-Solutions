@@ -1,6 +1,6 @@
 Free Code Camp
 ==============
 
-![](https://raw.github.com/rohan-paul/Free_Code_Camp_JavaScript-Solution/master/freecodecamp.png)
+![](https://raw.github.com/rohan-paul/Eloquent-JavaScript-Solutions/eloquent-js-cover-page.png)
 
-This repo contains my solutions to the JavaScript coding problems from the online full stack web-development course [Free Code Camp](http://www.freecodecamp.com/).
+This repo contains my solutions to the exercises in [Eloquent JavaScript second edition](http://eloquentjavascript.net/).
