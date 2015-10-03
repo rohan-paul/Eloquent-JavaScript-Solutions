@@ -24,7 +24,6 @@ function loopingTriangle() {
 }
 
 console.log(loopingTriangle());
-
 console.log("***End of this solution***")
 
 /*
@@ -68,7 +67,5 @@ for (var i = 0; i < matrixSize; i++) {
     }
     console.log(matrixValue);
 }
-
-
 
 console.log("***End of this solution***")
