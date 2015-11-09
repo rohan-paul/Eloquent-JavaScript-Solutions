@@ -91,6 +91,35 @@ function listToArray(list) {
 
 };
 
-
 console.log(arrayToList([10, 20, 30]));
 console.log(listToArray(arrayToList([10, 20, 30])));
+
+function prepend(value, list) {
+    return {value: value, rest: list };
+}
+
+function nth(list, number){
+    if (list.rest == (null || 'undefined') || number < 0 ) {
+        return;
+    } else if (number === 0) {
+        return list.value;
+    } else {
+        number--;
+        return nth(list.rest, number);
+    }
+}
+
+console.log((arrayToList(["R", "P", "H"])));
+
+console.log(nth(arrayToList(["R", "P", "H"]), 0));
+console.log(nth(arrayToList(["R", "P", "H"]), 1));
+console.log(nth(arrayToList(["R", "P", "H"]), 2));
+console.log(nth(arrayToList(["R", "P", "H"]), -1));
+
+/* My learning Note on the recursive nth function -
+ A) < list.rest > will fetch the next node of the list (i.e. the next value-rest pair) and < list.value > will fetch the value part of the current node (i.e. an element of the original array in this case)
+ B) Assuming for an example, I have given to “number” parameter the number 1 > So “number” will start from the value 1 and decremented at each node / each loop > So it will reach “0” in the second node / loop
+ C) And the as soon as its decremented value reaches "0" > the else if condition of the nth function will be triggered and will < return list.value > for that particular node.
+ In the above example - the list.value for the second node is 'P' and that's what is being returned
+ D) Overall the function works as - After looping through the if conditions, when recursion "termination condition" is reached i.e. that the list.rest element is null OR that number === 0 it returns the list.value from that particular node (i.e. in the node where the "termination condition" was reached. Otherwise, it recurses into nth and moves to the next node of the list.
+ */
