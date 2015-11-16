@@ -123,3 +123,47 @@ console.log(nth(arrayToList(["R", "P", "H"]), -1));
  In the above example - the list.value for the second node is 'P' and that's what is being returned
  D) Overall the function works as - After looping through the if conditions, when recursion "termination condition" is reached i.e. that the list.rest element is null OR that number === 0 it returns the list.value from that particular node (i.e. in the node where the "termination condition" was reached. Otherwise, it recurses into nth and moves to the next node of the list.
  */
+
+/* Chapter-4/Problem-4
+ The == operator compares objects by identity. But sometimes, you would prefer to compare the values of their actual properties. Write a function, deepEqual, that takes two values and returns true only if they are the same value or are objects with the same properties whose values
+ are also equal when compared with a recursive call to deepEqual.
+
+To find out whether to compare two things by identity (use the === operator for that) or by looking at their properties, you can use the typeof operator. If it produces "object" for both values, you should do a deep comparison. But you have to take one silly exception into account: by a historical accident, typeof null also produces "object".
+ */
+
+console.log("Below output from deepEqual")
+
+function deepEqual(a, b) {
+    if((typeof a == "object" && a != null) && (typeof b == "object" && b != null)) {
+        if (Object.keys(a).length != Object.keys(b).length) {
+            return false;
+        } else if (a === b) {
+            return true;
+        } else if (typeof a !== 'object' || typeof b !== 'object') {
+            return false;
+        } else {
+            for (var prop in a) {
+                if (b.hasOwnProperty(prop)) {
+                    if (! deepEqual(a[prop], b[prop]))
+                        return false;  // recursively checking if deepEqual is satisfied between a and b.
+                }
+                else
+                    return false;  // i.e. if b.hasOwnProperty(prop) itself is false.
+            }
+
+            return true; // if both b.hasOwnProperty(prop) and recursive deepEqual is true.
+        }
+
+        }
+
+
+        else if (a !== b) {
+            return false;
+        } else
+            return true;
+}
+
+var obj = {here: {is: "an"}, object: 2};
+console.log(deepEqual(obj, obj));  // → true
+console.log(deepEqual(obj, {here: 1, object: 2}));  // → false
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));  // → true
