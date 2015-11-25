@@ -131,7 +131,7 @@ console.log(nth(arrayToList(["R", "P", "H"]), -1));
 To find out whether to compare two things by identity (use the === operator for that) or by looking at their properties, you can use the typeof operator. If it produces "object" for both values, you should do a deep comparison. But you have to take one silly exception into account: by a historical accident, typeof null also produces "object".
  */
 
-console.log("Below output from deepEqual")
+console.log("**Below output from deepEqual**");
 
 function deepEqual(a, b) {
     if((typeof a == "object" && a != null) && (typeof b == "object" && b != null)) {
