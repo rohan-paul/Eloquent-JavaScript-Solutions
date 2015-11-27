@@ -66,7 +66,9 @@ var ageDifference = [];
 ancestry.forEach(function(person) {
     for (var i in byName) {
         if(i === person.mother) {
-            ageDifference.push((person.born) - byName[i].born);
+            ageDifference.push((person.born) - byName[person.mother].born);
+            console.log(person.name);
+            console.log("Mother's name of the above person - " + byName[person.mother].name);
         }
     }
 });
