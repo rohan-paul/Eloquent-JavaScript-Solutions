@@ -1,9 +1,8 @@
-
 /* Problem Statement -
- Using the example data set from this chapter, compute the A) average age, B) difference between mothers and children (the age of the mother when the child is born).
- You can use the average function defined earlier in this chapter. Note that not all the mothers mentioned in the data are themselves
- present in the array. The byName object, which makes it easy to find a person’s object from their name, might be useful here.
- */
+When we looked up all the people in our data set that lived more than 90 years, only the latest generation in the data came out. Let’s take a closer look at that phenomenon. Compute and output the average age of the people in the ancestry data set per century. A person is assigned to a century by taking their year of death, dividing it by 100, and rounding it up, as in Math.ceil(person.died / 100).
+
+For bonus points, write a function groupBy that abstracts the grouping operation. It should accept as arguments an array and a function that computes the group for an element in the array and returns an object that maps group names to arrays of group numbers.
+*/
 
 // The example data set as below
 var ANCESTRY_FILE = "[\n  " + [
@@ -55,24 +54,26 @@ function average(array) {
     return (array.reduce(plus) / array.length);
 }
 
-// The below byName variable (which I am declaring to be an empty object) will contain all individual person objects each with the corresponding 6 property-value pairs. So that later I can iterate through each of them to check if each has a mother property.
-var byName = {};
-ancestry.forEach(function(person) {
-   byName[person.name] = person;
- });
+function age(person) {
+    return person.died - person.born;
+}
 
-var ageDifference = [];
-
-ancestry.forEach(function(person) {
-    for (var i in byName) {
-        if(byName[person.mother] != null) {
-            ageDifference.push((person.born) - byName[person.mother].born);
-            // console.log(person.name);
-            // console.log("Mother's name of the above person - " + byName[person.mother].name);
-            // The above 2 lines are not necessary, I was only checking that the codes are picking up the correct mother for each person.
+function groupBy(array, computeGroup) {
+    var personAgeGroups = {};
+    array.forEach(function(person) {
+        var personDeathCentury = computeGroup(person);
+        if(!personAgeGroups[personDeathCentury]){
+            personAgeGroups[personDeathCentury] = [];  // If this person's death century was not already there as an element of personAgeGroup object, with the computations done with computeGroup()function till now, then initiate this element by assigning an empty array as this element. And then in the next line push this person's death century to that element.
+            personAgeGroups[personDeathCentury].push(age(person));
         }
-    }
+    });
+    return personAgeGroups;
+}
+
+var computedDeathCenturies = groupBy(ancestry, function(a) {
+    return (Math.ceil(a.died/100));
 });
 
-console.log(average(ageDifference));
-
+for(centuryGroup in computedDeathCenturies) {
+   console.log(centuryGroup + " : " + average(computedDeathCenturies[centuryGroup]));
+}
