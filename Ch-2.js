@@ -19,12 +19,12 @@ function loopingTriangle() {
     var str = "";
     for (var i = 0; i <= 7; i++) {
         str+="#"
-    }
-    return str;
+		console.log(str);
+    }    
 }
 
-console.log(loopingTriangle());
-console.log("***End of this solution***")
+loopingTriangle();
+console.log("***End of this solution 1 ***")
 
 /*
 Write a program that uses console.log to print all the numbers from 1 to 100, with two exceptions. For numbers divisible by 3, print "Fizz" instead of the number, and for numbers divisible by 5 (and not 3), print "Buzz" instead. When you have that working, modify your program to print "FizzBuzz"
@@ -44,7 +44,7 @@ function fizzBuzz() {
 }
 
 console.log(fizzBuzz());
-console.log("***End of this solution***")
+console.log("***End of this solution 2 ***")
 
 /* Chess Board - Write a program that creates a string that represents a grid of given size,
  using newline characters to separate lines. At each position of the grid there
@@ -68,4 +68,4 @@ for (var i = 0; i < matrixSize; i++) {
     console.log(matrixValue);
 }
 
-console.log("***End of this solution***")
+console.log("***End of this solution 3***")
